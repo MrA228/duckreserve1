@@ -31,8 +31,16 @@ stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
 STRIPE_PUBLIC = os.environ.get("STRIPE_PUBLIC_KEY")
 
 # Create the database name
-engine = create_engine("sqlite:///reservation.db", echo=True)
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+# SQLAlchemy 2.0 requires postgresql:// instead of postgres://
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+engine = create_engine(DATABASE_URL, echo=True)
 Base = declarative_base()
+
+
 
 # Table of users
 class User(Base):
@@ -100,6 +108,65 @@ Base.metadata.create_all(engine)
 # Create the session look-after-er
 SessionLocal = sessionmaker(bind=engine)
 db = SessionLocal()
+
+def seed_rooms_and_tables():
+    room_names = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot"]
+
+    admin_pass = os.environ.get("ADMIN_PASSWORD")
+    if not admin_pass:
+        raise Exception("ADMIN_PASSWORD was not set")
+
+    # Creating admin
+    admin = db.query(User).filter_by(username="admin").first()
+    if not admin:
+        admin = User(
+            username = "admin",
+            password_hash = generate_password_hash(admin_pass),
+            is_admin = True,
+        )
+        db.add(admin)
+        db.commit()
+        print("Admin created")
+    else:
+        print("Admin already exists.")
+    
+
+    # If rooms already exist, skip seeding
+    if db.query(Room).count() > 0:
+        print("Rooms already exist - skipping seeding.")
+        return
+    
+    print("Alr, seeding rooms and tables...")
+
+    # Creating each room
+
+    for name in room_names:
+        room = Room(name=name)
+        db.add(room)
+        db.commit()
+        # room id should be available now
+
+        # creating 16 tables inside the room
+        for i in range(1, 17):
+            table = Table(
+                name=f"{name}-{i}",
+                seats=4,
+                room_id=room.id,
+            )
+            db.add(table)
+        db.commit()
+    print("Alr, seeding complete V")
+    
+with app.app_context():
+    try:
+        # Only seed if no rooms exist
+        if db.query(Room).count() == 0:
+            print("Database empty → Seeding rooms & admin...")
+            seed_rooms_and_tables()
+        else:
+            print("Database already seeded.")
+    except Exception as e:
+        print("Seeding check failed:", e)
 
 # Main page with welcome and free tables
 @app.route("/")
@@ -370,53 +437,7 @@ def delete_account():
 
 
 
-def seed_rooms_and_tables():
-    room_names = ["Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot"]
 
-    admin_pass = os.environ.get("ADMIN_PASSWORD")
-    if not admin_pass:
-        raise Exception("ADMIN_PASSWORD was not set")
-
-    # Creating admin
-    admin = db.query(User).filter_by(username="admin").first()
-    if not admin:
-        admin = User(
-            username = "admin",
-            password_hash = generate_password_hash(admin_pass),
-            is_admin = True,
-        )
-        db.add(admin)
-        db.commit()
-        print("Admin created")
-    else:
-        print("Admin already exists.")
-    
-
-    # If rooms already exist, skip seeding
-    if db.query(Room).count() > 0:
-        print("Rooms already exist - skipping seeding.")
-        return
-    
-    print("Alr, seeding rooms and tables...")
-
-    # Creating each room
-
-    for name in room_names:
-        room = Room(name=name)
-        db.add(room)
-        db.commit()
-        # room id should be available now
-
-        # creating 16 tables inside the room
-        for i in range(1, 17):
-            table = Table(
-                name=f"{name}-{i}",
-                seats=4,
-                room_id=room.id,
-            )
-            db.add(table)
-        db.commit()
-    print("Alr, seeding complete V")
 
 @app.route("/pay/<int:table_id>")
 @login_required
@@ -464,7 +485,3 @@ def after_payment():
     # Reserving safely
 
     return redirect(f"/reserve/{table_id}?slot={slot}")
-
-if __name__ == "__main__":
-    seed_rooms_and_tables()
-    app.run(debug=True)
