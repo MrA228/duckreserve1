@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main
+{% endblock %}
+
+{% block main %}
+
+    {% if not session.get("user_id") %}
+        <h1>Welcome to DuckReserve</h1>
+        <p>Book your table online - no quacking lines!</p>
+    {% elif session.get("is_admin") %}
+        <h2>Admin Dashboard</h2>
+        <a class="btn btn-danger" href="/admin">View All Reservations</a>
+        <a class="btn btn-outline-secondary" href="/admin/history">Reservation History</a>
+    {% else %}
+        <h2>Welcome Back</h2>
+        <p>Choose a room to start reserving:</p>
+    {% endif %}
+
+
+    <!-- rooms are always visible, hehe-->
+
+    <div class="d-flex flex-wrap justify-content-center mt-4">
+        {% for room in rooms %}
+            <a href="/room/{{ room.id }}"
+            class="btn btn-outline-primary m-2 p-4"
+            style="min-width: 150px; font-size: 1.2rem;">
+            {{room.name}}
+            </a>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

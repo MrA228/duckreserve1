@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Reservations
+{% endblock %}
+
+{% block main %}
+
+    <h1>My Reservations</h1>
+
+    <h3 class="mt-4">Active Reservations</h3>
+
+    {% if active %}
+        <ul class="list-group m-3">
+            {% for r in active %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>
+                        🟢 <strong>{{ r._table_obj.name }}</strong> in <strong>{{ r._table_obj.room.name }}</strong>
+                        <br>
+                        <span style="font-size: 0.9rem; color: #555;">
+                            Reserved at: {{ r.timestamp }}
+                            Reserve time: {{ r.time_slot }}
+                        </span>
+                    </span>
+
+                    <a href="/cancel/{{ r.table_id }}?slot={{ r.time_slot }}" class="btn btn-warning btn-sm">
+                        Cancel
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <P class="text-muted">No Active Reservations.</P>
+    {% endif %}
+
+    <hr class="my-4">
+
+    <h3>Reservation History</h3>
+
+    {% if history %}
+        <ul class="list-group mt-3">
+            {% for r in history %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>
+                        ⚪ <strong>{{ r._table_obj.name }}</strong> in <strong>{{ r._table_obj.room.name }}</strong>
+                        <br>
+                        <span style="font-size: 0.9rem; color: #555;">
+                            Reserved at: {{ r.timestamp }}
+                            Reserve time: {{ r.time_slot }}
+                        </span>
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-muted">No Past Reservations.</p>
+    {% endif %}
+{% endblock %}

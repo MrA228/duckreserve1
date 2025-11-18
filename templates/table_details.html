@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ table.name }}
+{% endblock %}
+
+{% block main %}
+
+    <h2>{{ table.name }} - Time Slots</h2>
+    <p>Select an available time slot to reserve</p>
+    
+    {% set reserved_by = {} %}
+    {% for r in reservations %}
+        {% set _ = reserved_by.update({ r.time_slot: r.user.username}) %}
+    {% endfor %}
+
+
+    <div class="container mt-4">
+        <div class="row">
+
+            {% for slot in times %}
+                <div class="col-3 m-2">
+
+                    {% set is_taken = slot in taken %}
+
+                    <div class="p-3 border rounded text-center" style="background-color: {% if is_taken %} #ff6b6b {% else %} #ffffff {% endif %}; color: {% if is_taken %} #ffffff {% else %} #000000 {% endif %}">
+                        <strong>{{ slot }}</strong>
+
+                        {% if is_taken %}
+                            <div style="font-size: 0.8rem">
+                                Reserved by {{ reserved_by[slot] }}
+                            </div>
+                        {% else %}
+                            {% if session.get("user_id") %}
+                                <a href="/pay/{{ table.id }}?slot={{ slot }}" class="btn btn-sm btn-primary mt-2">
+                                    Pay $5 and Reserve
+                                </a>
+                            {% else %}
+                                <a href="/login" class="btn btn-sm btn-outline-secondary mt-2">
+                                    Login to Reserve
+                                </a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

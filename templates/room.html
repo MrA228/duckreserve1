@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ room.name }}
+{% endblock %}
+
+{% block main %}
+
+    <h1>{{ room.name }} Room</h1>
+    <p>Click on a table to see available time slots.</p>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            
+            {% for table in tables %}
+                <div class="col-3 m-3"> 
+                    <a href="/table/{{ table.id }}" style="text-decoration: none;">
+                        <div class="p-3 border rounded text-center"
+                            style="
+                                min-height: 120px;
+                                color: black;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                background-color: #ffff;
+                            ">
+                            
+                            <h5>{{ table.name }}</h5>
+                            <span style="opacity: 0.6; font-size: 0.85rem;">
+                                View Times
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
