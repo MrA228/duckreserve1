@@ -224,7 +224,7 @@ def register():
         
         usercheck = db.query(User).filter_by(username=username).first()
         if usercheck:
-            return "User already exists", 400
+            return render_template("register.html", error="This User Already exists.")
 
         passhash = generate_password_hash(password)
 
