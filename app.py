@@ -190,7 +190,7 @@ def login():
         user = db.query(User).filter_by(username=username).first()
 
         if not user or not check_password_hash(user.password_hash, password):
-            return "Invalid Username and/or Password", 400
+            return render_template("login.html", error="Invalid Username and/or Password")
         
         session["user_id"] = user.id
         session["is_admin"] = user.is_admin
