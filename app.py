@@ -220,7 +220,7 @@ def register():
             return "Missing Confirmation (password)", 400
         
         if password != confirmation:
-            return "Passwords do not match", 400
+            return render_template("register.html", error="Passwords do not match")
         
         usercheck = db.query(User).filter_by(username=username).first()
         if usercheck:
