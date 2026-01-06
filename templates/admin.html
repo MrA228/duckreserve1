@@ -5,43 +5,58 @@
 {% endblock %}
 
 {% block main %}
+    <div class="text-center mb-4">
+        <h1>Admin Dashboard</h1>
+    </div>
 
-    <h1>Admin Dashboard</h1>
+    <div class="card p-4 shadow-sm mb-4">
+        <h3 class="mb-4">Active Reservations</h3>
 
-    <h3 class="mt-4">Active reservations</h3>
+        {% if reservations %}
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Table</th>
+                            <th>User</th>
+                            <th>Room</th>
+                            <th>Time Slot</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in reservations %}
+                            <tr>
+                                <td><strong>{{ r.table.name }}</strong></td>
+                                <td>{{ r.user.username }}</td>
+                                <td>{{ r.table.room.name }}</td>
+                                <td>{{ r.time_slot }}</td>
+                                <td>
+                                    <a href="/admin/free/{{ r.table_id }}?slot={{ r.time_slot }}" class="btn btn-danger btn-sm">
+                                        Force Free
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="empty-state">
+                <p class="text-muted">No active reservations.</p>
+            </div>
+        {% endif %}
+    </div>
 
-    <table class="table table-bordered table-striped mt-3">
-        <thead>
-            <tr>
-                <th>Table</th>
-                <th>User</th>
-                <th>Room</th>
-                <th>Slot</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for r in reservations %}
-                <tr>
-                    <td>{{ r.table.name }}</td>
-                    <td>{{ r.user.username }}</td>
-                    <td>{{ r.table.room.name }}</td>
-                    <td>{{ r.time_slot }}</td>
-                    <td>
-                        <a href="/admin/free/{{ r.table_id }}?slot={{ r.time_slot }}" class="btn btn-danger btn-sm">
-                            Force Free
-                        </a>
-                    </td>
-                </tr>
+    <div class="card p-4 shadow-sm">
+        <h3 class="mb-4">Rooms</h3>
+        <div class="d-flex flex-wrap gap-2">
+            {% for room in rooms %}
+                <a href="/room/{{ room.id }}" class="btn btn-outline-primary">
+                    {{ room.name }}
+                </a>
             {% endfor %}
-        </tbody>
-    </table>
-
-    <h3 class="mt-4">Rooms</h3>
-    <ul>
-        {% for room in rooms %}
-            <li><a href="/room/{{ room.id }}">{{ room.name }}</a></li>
-        {% endfor %}
-    </ul>
+        </div>
+    </div>
 
 {% endblock %}

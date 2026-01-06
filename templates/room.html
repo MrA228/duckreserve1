@@ -5,29 +5,20 @@
 {% endblock %}
 
 {% block main %}
-
-    <h1>{{ room.name }} Room</h1>
-    <p>Click on a table to see available time slots.</p>
+    <div class="text-center mb-4">
+        <h1>{{ room.name }} Room</h1>
+        <p class="text-muted">Click on a table to see available time slots.</p>
+    </div>
 
     <div class="container">
         <div class="row justify-content-center">
-            
             {% for table in tables %}
-                <div class="col-3 m-3"> 
+                <div class="col-md-4 col-sm-6 col-12 mb-4"> 
                     <a href="/table/{{ table.id }}" style="text-decoration: none;">
-                        <div class="p-3 border rounded text-center"
-                            style="
-                                min-height: 120px;
-                                color: black;
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: center;
-                                background-color: #ffff;
-                            ">
-                            
-                            <h5>{{ table.name }}</h5>
-                            <span style="opacity: 0.6; font-size: 0.85rem;">
-                                View Times
+                        <div class="table-card p-4 text-center">
+                            <h5 class="mb-2">{{ table.name }}</h5>
+                            <span class="text-muted" style="font-size: 0.9rem;">
+                                View Available Times →
                             </span>
                         </div>
                     </a>
