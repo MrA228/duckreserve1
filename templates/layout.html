@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="{{ session.get('language', 'en') }}">
 
     <head>
 
@@ -36,20 +36,38 @@
                     {% if session["user_id"] %}
                         {% if session.get("is_admin") %}
                             <ul class="navbar-nav me-auto mt-2">
-                                <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/admin">{{ _("Admin") }}</a></li>
                             </ul>
                         {% endif %}
                         <ul class="navbar-nav me-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/myreservations">My Reservations</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/myreservations">{{ _("My Reservations") }}</a></li>
                         </ul>
                         <ul class="navbar-nav ms-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/account">My Account</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/logout">{{ _("Log Out") }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/account">{{ _("My Account") }}</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-globe"></i> {{ session.get('language', 'en')|upper }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                    <li><a class="dropdown-item" href="/set_language/en">English</a></li>
+                                    <li><a class="dropdown-item" href="/set_language/ru">Русский</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     {% else %}
                         <ul class="navbar-nav ms-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/register">{{ _("Register") }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login">{{ _("Log In") }}</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-globe"></i> {{ session.get('language', 'en')|upper }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                    <li><a class="dropdown-item" href="/set_language/en">English</a></li>
+                                    <li><a class="dropdown-item" href="/set_language/ru">Русский</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     {% endif %}
                 </div>
@@ -71,7 +89,7 @@
         <footer class="mt-5">
             <div class="container text-center">
                 <p class="text-muted mb-0">
-                    &copy; 2024 DuckReserve. Book your table online - no quacking lines! 🦆
+                    &copy; 2026 DuckReserve. Book your table online - no quacking lines! 🦆
                 </p>
             </div>
         </footer>

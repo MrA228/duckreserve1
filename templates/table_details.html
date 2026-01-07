@@ -6,8 +6,8 @@
 
 {% block main %}
     <div class="text-center mb-4">
-        <h2>{{ table.name }} - Time Slots</h2>
-        <p class="text-muted">Select an available time slot to reserve</p>
+        <h2>{{ table.name }} - {{ _("Time Slots") }}</h2>
+        <p class="text-muted">{{ _("Select an available time slot to reserve") }}</p>
     </div>
     
     {% set reserved_by = {} %}
@@ -26,16 +26,16 @@
 
                         {% if is_taken %}
                             <div style="font-size: 0.85rem; margin-top: 0.5rem;">
-                                <i class="bi bi-lock-fill"></i> Reserved by {{ reserved_by[slot] }}
+                                <i class="bi bi-lock-fill"></i> {{ _("Reserved by") }} {{ reserved_by[slot] }}
                             </div>
                         {% else %}
                             {% if session.get("user_id") %}
                                 <a href="/pay/{{ table.id }}?slot={{ slot }}" class="btn btn-sm btn-primary mt-3">
-                                    Pay $5 and Reserve
+                                    {{ _("Pay $5 and Reserve") }}
                                 </a>
                             {% else %}
                                 <a href="/login" class="btn btn-sm btn-outline-secondary mt-3">
-                                    Login to Reserve
+                                    {{ _("Login to Reserve") }}
                                 </a>
                             {% endif %}
                         {% endif %}

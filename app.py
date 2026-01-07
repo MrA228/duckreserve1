@@ -3,7 +3,8 @@ import os
 import qrcode
 import base64
 import stripe
-from flask import Flask, render_template, redirect, request, session
+from flask import Flask, render_template, redirect, request, session, url_for
+from flask_babel import Babel, gettext as _
 from flask_session import Session
 from sqlalchemy import create_engine, Column, Integer, String, Boolean, Table, ForeignKey
 from sqlalchemy.orm import declarative_base, sessionmaker, relationship
@@ -25,6 +26,30 @@ app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
+
+# Configure Babel for internationalization
+app.config["LANGUAGES"] = {
+    "en": "English",
+    "ru": "Русский"
+}
+app.config["BABEL_DEFAULT_LOCALE"] = "en"
+app.config["BABEL_TRANSLATION_DIRECTORIES"] = "translations"
+
+babel = Babel()
+
+def get_locale():
+    # Check if language is set in session
+    if "language" in session:
+        return session["language"]
+    # Try to get from request args
+    language = request.args.get("lang")
+    if language and language in app.config["LANGUAGES"]:
+        session["language"] = language
+        return language
+    # Default to English
+    return app.config["BABEL_DEFAULT_LOCALE"]
+
+babel.init_app(app, locale_selector=get_locale)
 
 app.secret_key = os.environ.get("SECRET_KEY")
 stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
@@ -169,6 +194,13 @@ with app.app_context():
             print("Database already seeded.")
     except Exception as e:
         print("Seeding check failed:", e)
+
+# Language switcher route
+@app.route("/set_language/<language>")
+def set_language(language):
+    if language in app.config["LANGUAGES"]:
+        session["language"] = language
+    return redirect(request.referrer or url_for("index"))
 
 # Main page with welcome and free tables
 @app.route("/")

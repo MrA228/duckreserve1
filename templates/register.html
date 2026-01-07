@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Registration
+    {{ _("Registration") }}
 {% endblock %}
 
 {% block main %}
     <div class="form-container">
-        <h2 class="mb-4">Create Account</h2>
+        <h2 class="mb-4">{{ _("Create Account") }}</h2>
         
         {% if error %}
         <div class="alert alert-danger text-center" role="alert">
@@ -16,22 +16,22 @@
 
         <form action="/register" method="post">
             <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input class="form-control" id="username" autocomplete="username" autofocus name="username" placeholder="Choose a username" type="text" required>
+                <label for="username" class="form-label">{{ _("Username") }}</label>
+                <input class="form-control" id="username" autocomplete="username" autofocus name="username" placeholder="{{ _('Choose a username') }}" type="text" required>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input class="form-control" id="password" autocomplete="new-password" name="password" placeholder="Create a password" type="password" required>
+                <label for="password" class="form-label">{{ _("Password") }}</label>
+                <input class="form-control" id="password" autocomplete="new-password" name="password" placeholder="{{ _('Create a password') }}" type="password" required>
             </div>
             <div class="mb-3">
-                <label for="confirmation" class="form-label">Confirm Password</label>
-                <input class="form-control" id="confirmation" autocomplete="new-password" name="confirmation" placeholder="Confirm your password" type="password" required>
+                <label for="confirmation" class="form-label">{{ _("Confirm Password") }}</label>
+                <input class="form-control" id="confirmation" autocomplete="new-password" name="confirmation" placeholder="{{ _('Confirm your password') }}" type="password" required>
             </div>
-            <button class="btn btn-primary w-100" type="submit">Register</button>
+            <button class="btn btn-primary w-100" type="submit">{{ _("Register") }}</button>
         </form>
         
         <p class="mt-3 text-center text-muted">
-            Already have an account? <a href="/login">Log in here</a>
+            {{ _("Already have an account?") }} <a href="/login">{{ _("Log in here") }}</a>
         </p>
     </div>
 {% endblock %}

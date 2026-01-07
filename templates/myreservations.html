@@ -1,17 +1,17 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    My Reservations
+    {{ _("My Reservations") }}
 {% endblock %}
 
 {% block main %}
     <div class="text-center mb-4">
-        <h1>My Reservations</h1>
+        <h1>{{ _("My Reservations") }}</h1>
     </div>
 
     <div class="card p-4 shadow-sm mb-4">
         <h3 class="mb-4">
-            <span class="status-active">●</span> Active Reservations
+            <span class="status-active">●</span> {{ _("Active Reservations") }}
         </h3>
 
         {% if active %}
@@ -19,24 +19,24 @@
                 {% for r in active %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div>
-                            <strong>{{ r._table_obj.name }}</strong> in <strong>{{ r._table_obj.room.name }}</strong>
+                            <strong>{{ r._table_obj.name }}</strong> {{ _("in") }} <strong>{{ r._table_obj.room.name }}</strong>
                             <br>
                             <span class="text-muted" style="font-size: 0.9rem;">
-                                <i class="bi bi-clock"></i> Reserved at: {{ r.timestamp }}
+                                <i class="bi bi-clock"></i> {{ _("Reserved at:") }} {{ r.timestamp }}
                                 <br>
-                                <i class="bi bi-calendar-event"></i> Reserve time: {{ r.time_slot }}
+                                <i class="bi bi-calendar-event"></i> {{ _("Reserve time:") }} {{ r.time_slot }}
                             </span>
                         </div>
 
                         <a href="/cancel/{{ r.table_id }}?slot={{ r.time_slot }}" class="btn btn-warning btn-sm">
-                            Cancel
+                            {{ _("Cancel") }}
                         </a>
                     </li>
                 {% endfor %}
             </ul>
         {% else %}
             <div class="empty-state">
-                <p class="text-muted">No Active Reservations.</p>
+                <p class="text-muted">{{ _("No Active Reservations.") }}</p>
             </div>
         {% endif %}
     </div>
@@ -45,7 +45,7 @@
 
     <div class="card p-4 shadow-sm">
         <h3 class="mb-4">
-            <span class="status-history">●</span> Reservation History
+            <span class="status-history">●</span> {{ _("Reservation History") }}
         </h3>
 
         {% if history %}
@@ -53,12 +53,12 @@
                 {% for r in history %}
                     <li class="list-group-item">
                         <div>
-                            <strong>{{ r._table_obj.name }}</strong> in <strong>{{ r._table_obj.room.name }}</strong>
+                            <strong>{{ r._table_obj.name }}</strong> {{ _("in") }} <strong>{{ r._table_obj.room.name }}</strong>
                             <br>
                             <span class="text-muted" style="font-size: 0.9rem;">
-                                <i class="bi bi-clock"></i> Reserved at: {{ r.timestamp }}
+                                <i class="bi bi-clock"></i> {{ _("Reserved at:") }} {{ r.timestamp }}
                                 <br>
-                                <i class="bi bi-calendar-event"></i> Reserve time: {{ r.time_slot }}
+                                <i class="bi bi-calendar-event"></i> {{ _("Reserve time:") }} {{ r.time_slot }}
                             </span>
                         </div>
                     </li>
@@ -66,7 +66,7 @@
             </ul>
         {% else %}
             <div class="empty-state">
-                <p class="text-muted">No Past Reservations.</p>
+                <p class="text-muted">{{ _("No Past Reservations.") }}</p>
             </div>
         {% endif %}
     </div>

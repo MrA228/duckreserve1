@@ -6,8 +6,8 @@
 
 {% block main %}
     <div class="text-center mb-4">
-        <h1>{{ room.name }} Room</h1>
-        <p class="text-muted">Click on a table to see available time slots.</p>
+        <h1>{{ room.name }} {{ _("Room") }}</h1>
+        <p class="text-muted">{{ _("Click on a table to see available time slots.") }}</p>
     </div>
 
     <div class="container">
@@ -18,7 +18,7 @@
                         <div class="table-card p-4 text-center">
                             <h5 class="mb-2">{{ table.name }}</h5>
                             <span class="text-muted" style="font-size: 0.9rem;">
-                                View Available Times →
+                                {{ _("View Available Times") }} →
                             </span>
                         </div>
                     </a>

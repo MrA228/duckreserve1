@@ -73,7 +73,7 @@ main {
     border-radius: 12px;
     text-decoration: none;
     display: inline-block;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-color: var(--duck-blue);
     color: white;
     font-weight: 600;
 }
@@ -81,6 +81,7 @@ main {
 .room-card:hover {
     color: white;
     transform: translateY(-3px) scale(1.02);
+    opacity: 0.9;
 }
 
 /* Table Cards */
@@ -93,7 +94,7 @@ main {
 }
 
 .table-card:hover {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-color: #f5f7fa;
     border-color: var(--primary-color);
 }
 
@@ -110,12 +111,12 @@ main {
 }
 
 .slot-card.available {
-    background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
-    color: #2c3e50;
+    background-color: var(--duck-green);
+    color: white;
 }
 
 .slot-card.taken {
-    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    background-color: var(--duck-red);
     color: white;
 }
 
@@ -161,35 +162,41 @@ main {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--duck-blue) 0%, #5BA3F5 100%);
+    background-color: var(--duck-blue);
     box-shadow: 0 4px 6px rgba(74, 144, 226, 0.3);
 }
 
 .btn-primary:hover {
+    background-color: var(--duck-blue);
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(74, 144, 226, 0.4);
+    opacity: 0.9;
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, var(--duck-red) 0%, #EC7063 100%);
+    background-color: var(--duck-red);
     box-shadow: 0 4px 6px rgba(231, 76, 60, 0.3);
 }
 
 .btn-danger:hover {
+    background-color: var(--duck-red);
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(231, 76, 60, 0.4);
+    opacity: 0.9;
 }
 
 .btn-warning {
-    background: linear-gradient(135deg, var(--duck-yellow) 0%, #F7DC6F 100%);
+    background-color: var(--duck-yellow);
     box-shadow: 0 4px 6px rgba(241, 196, 15, 0.3);
     color: #2c3e50;
 }
 
 .btn-warning:hover {
+    background-color: var(--duck-yellow);
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(241, 196, 15, 0.4);
     color: #2c3e50;
+    opacity: 0.9;
 }
 
 .btn-outline-primary {

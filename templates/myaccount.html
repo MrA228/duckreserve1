@@ -1,72 +1,72 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    My Account
+    {{ _("My Account") }}
 {% endblock %}
 
 {% block main %}
     <div class="text-center mb-4">
-        <h2>My Account</h2>
+        <h2>{{ _("My Account") }}</h2>
     </div>
 
     <div class="card p-4 mt-3 shadow-sm">
-        <h4 class="mb-4">Account Information</h4>
+        <h4 class="mb-4">{{ _("Account Information") }}</h4>
 
         <div class="mb-3">
-            <strong>Username:</strong> <span class="text-muted">{{ user.username }}</span>
+            <strong>{{ _("Username:") }}</strong> <span class="text-muted">{{ user.username }}</span>
         </div>
 
         {% if user.is_admin %}
             <div class="mb-3">
-                <span class="badge bg-danger">Admin</span>
+                <span class="badge bg-danger">{{ _("Admin") }}</span>
             </div>
         {% endif %}
 
         <div class="mb-3">
-            <strong>User ID:</strong> <span class="text-muted">{{ user.id }}</span>
+            <strong>{{ _("User ID:") }}</strong> <span class="text-muted">{{ user.id }}</span>
         </div>
 
         <div class="mt-4 mb-3">
-            <strong>Your QR Code:</strong>
+            <strong>{{ _("Your QR Code:") }}</strong>
             <div class="qr-code-container mt-2">
                 <img src="data:image/png;base64,{{ qr_image }}" alt="QR Code">
             </div>
         </div>
 
         <p class="mt-3">
-            <strong>Total Reservations:</strong> <span class="badge bg-primary">{{ total_reservations }}</span>
+            <strong>{{ _("Total Reservations:") }}</strong> <span class="badge bg-primary">{{ total_reservations }}</span>
         </p>
     </div>
 
     <hr class="my-5">
 
     <div class="card p-4 shadow-sm">
-        <h3 class="mb-4">Change Password</h3>
+        <h3 class="mb-4">{{ _("Change Password") }}</h3>
 
         <form action="/changepassword" method="post">
             <div class="mb-3">
-                <label for="old-password" class="form-label">Current Password</label>
-                <input class="form-control" id="old-password" autocomplete="current-password" type="password" name="old" placeholder="Enter current password" required>
+                <label for="old-password" class="form-label">{{ _("Current Password") }}</label>
+                <input class="form-control" id="old-password" autocomplete="current-password" type="password" name="old" placeholder="{{ _('Enter current password') }}" required>
             </div>
             <div class="mb-3">
-                <label for="new-password" class="form-label">New Password</label>
-                <input class="form-control" id="new-password" autocomplete="new-password" type="password" name="new" placeholder="Enter new password" required>
+                <label for="new-password" class="form-label">{{ _("New Password") }}</label>
+                <input class="form-control" id="new-password" autocomplete="new-password" type="password" name="new" placeholder="{{ _('Enter new password') }}" required>
             </div>
             <div class="mb-3">
-                <label for="confirm-password" class="form-label">Confirm New Password</label>
-                <input class="form-control" id="confirm-password" autocomplete="new-password" type="password" name="confirm" placeholder="Confirm new password" required>
+                <label for="confirm-password" class="form-label">{{ _("Confirm New Password") }}</label>
+                <input class="form-control" id="confirm-password" autocomplete="new-password" type="password" name="confirm" placeholder="{{ _('Confirm new password') }}" required>
             </div>
-            <button class="btn btn-primary" type="submit">Change Password</button>
+            <button class="btn btn-primary" type="submit">{{ _("Change Password") }}</button>
         </form>
     </div>
 
     <hr class="my-5">
 
     <div class="card p-4 shadow-sm border border-danger">
-        <h3 class="mb-4 text-danger">Delete My Account</h3>
-        <p class="text-muted mb-3">Warning: This action cannot be undone. All your reservations will be permanently deleted.</p>
-        <form action="/deleteaccount" method="post" onsubmit="return confirm('Are you sure? This action cannot be undone.');">
-            <button class="btn btn-danger" type="submit">Delete Account</button>
+        <h3 class="mb-4 text-danger">{{ _("Delete My Account") }}</h3>
+        <p class="text-muted mb-3">{{ _("Warning: This action cannot be undone. All your reservations will be permanently deleted.") }}</p>
+        <form action="/deleteaccount" method="post" onsubmit="return confirm('{{ _("Are you sure? This action cannot be undone.") }}');">
+            <button class="btn btn-danger" type="submit">{{ _("Delete Account") }}</button>
         </form>
     </div>
 

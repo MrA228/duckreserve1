@@ -1,27 +1,27 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Admin Panel
+    {{ _("Admin Panel") }}
 {% endblock %}
 
 {% block main %}
     <div class="text-center mb-4">
-        <h1>Admin Dashboard</h1>
+        <h1>{{ _("Admin Dashboard") }}</h1>
     </div>
 
     <div class="card p-4 shadow-sm mb-4">
-        <h3 class="mb-4">Active Reservations</h3>
+        <h3 class="mb-4">{{ _("Active Reservations") }}</h3>
 
         {% if reservations %}
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>Table</th>
-                            <th>User</th>
-                            <th>Room</th>
-                            <th>Time Slot</th>
-                            <th>Action</th>
+                            <th>{{ _("Table") }}</th>
+                            <th>{{ _("User") }}</th>
+                            <th>{{ _("Room") }}</th>
+                            <th>{{ _("Time Slot") }}</th>
+                            <th>{{ _("Action") }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,7 +33,7 @@
                                 <td>{{ r.time_slot }}</td>
                                 <td>
                                     <a href="/admin/free/{{ r.table_id }}?slot={{ r.time_slot }}" class="btn btn-danger btn-sm">
-                                        Force Free
+                                        {{ _("Force Free") }}
                                     </a>
                                 </td>
                             </tr>
@@ -43,13 +43,13 @@
             </div>
         {% else %}
             <div class="empty-state">
-                <p class="text-muted">No active reservations.</p>
+                <p class="text-muted">{{ _("No active reservations.") }}</p>
             </div>
         {% endif %}
     </div>
 
     <div class="card p-4 shadow-sm">
-        <h3 class="mb-4">Rooms</h3>
+        <h3 class="mb-4">{{ _("Rooms") }}</h3>
         <div class="d-flex flex-wrap gap-2">
             {% for room in rooms %}
                 <a href="/room/{{ room.id }}" class="btn btn-outline-primary">
