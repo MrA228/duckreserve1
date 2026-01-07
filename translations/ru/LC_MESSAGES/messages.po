@@ -1,0 +1,234 @@
+# Russian translations for DuckReserve
+msgid ""
+msgstr ""
+"Language: ru\n"
+"Content-Type: text/plain; charset=utf-8\n"
+
+# Navigation
+msgid "Log Out"
+msgstr "Выйти"
+
+msgid "My Account"
+msgstr "Мой аккаунт"
+
+msgid "Register"
+msgstr "Регистрация"
+
+msgid "Log In"
+msgstr "Войти"
+
+msgid "Admin"
+msgstr "Админ"
+
+msgid "My Reservations"
+msgstr "Мои бронирования"
+
+# Index page
+msgid "Welcome to DuckReserve"
+msgstr "Добро пожаловать в DuckReserve"
+
+msgid "Book your table online - no quacking lines!"
+msgstr "Забронируйте столик онлайн - без очередей!"
+
+msgid "Welcome Back"
+msgstr "С возвращением"
+
+msgid "Choose a room to start reserving:"
+msgstr "Выберите зал для бронирования:"
+
+msgid "Available Rooms"
+msgstr "Доступные залы"
+
+msgid "Admin Dashboard"
+msgstr "Панель администратора"
+
+msgid "View All Reservations"
+msgstr "Просмотреть все бронирования"
+
+msgid "My Reservation History"
+msgstr "История моих бронирований"
+
+# Login page
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Enter your username"
+msgstr "Введите ваше имя пользователя"
+
+msgid "Password"
+msgstr "Пароль"
+
+msgid "Enter your password"
+msgstr "Введите ваш пароль"
+
+msgid "Don't have an account?"
+msgstr "Нет аккаунта?"
+
+msgid "Register here"
+msgstr "Зарегистрируйтесь здесь"
+
+# Register page
+msgid "Create Account"
+msgstr "Создать аккаунт"
+
+msgid "Choose a username"
+msgstr "Выберите имя пользователя"
+
+msgid "Create a password"
+msgstr "Создайте пароль"
+
+msgid "Confirm Password"
+msgstr "Подтвердите пароль"
+
+msgid "Confirm your password"
+msgstr "Подтвердите ваш пароль"
+
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+
+msgid "Log in here"
+msgstr "Войдите здесь"
+
+# Room page
+msgid "Room"
+msgstr "Зал"
+
+msgid "Click on a table to see available time slots."
+msgstr "Нажмите на столик, чтобы увидеть доступные временные слоты."
+
+msgid "View Available Times"
+msgstr "Посмотреть доступное время"
+
+# Table details
+msgid "Time Slots"
+msgstr "Временные слоты"
+
+msgid "Select an available time slot to reserve"
+msgstr "Выберите доступный временной слот для бронирования"
+
+msgid "Reserved by"
+msgstr "Забронировано пользователем"
+
+msgid "Pay $5 and Reserve"
+msgstr "Оплатить $5 и забронировать"
+
+msgid "Login to Reserve"
+msgstr "Войдите для бронирования"
+
+# My Reservations (already defined above in Navigation)
+
+msgid "Active Reservations"
+msgstr "Активные бронирования"
+
+msgid "Reserved at:"
+msgstr "Забронировано:"
+
+msgid "Reserve time:"
+msgstr "Время бронирования:"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "No Active Reservations."
+msgstr "Нет активных бронирований."
+
+msgid "Reservation History"
+msgstr "История бронирований"
+
+msgid "No Past Reservations."
+msgstr "Нет прошлых бронирований."
+
+# My Account
+msgid "My Account"
+msgstr "Мой аккаунт"
+
+msgid "Account Information"
+msgstr "Информация об аккаунте"
+
+msgid "User ID:"
+msgstr "ID пользователя:"
+
+msgid "Your QR Code:"
+msgstr "Ваш QR-код:"
+
+msgid "Total Reservations:"
+msgstr "Всего бронирований:"
+
+msgid "Change Password"
+msgstr "Изменить пароль"
+
+msgid "Current Password"
+msgstr "Текущий пароль"
+
+msgid "Enter current password"
+msgstr "Введите текущий пароль"
+
+msgid "New Password"
+msgstr "Новый пароль"
+
+msgid "Enter new password"
+msgstr "Введите новый пароль"
+
+msgid "Confirm New Password"
+msgstr "Подтвердите новый пароль"
+
+msgid "Confirm new password"
+msgstr "Подтвердите новый пароль"
+
+msgid "Delete My Account"
+msgstr "Удалить мой аккаунт"
+
+msgid "Warning: This action cannot be undone. All your reservations will be permanently deleted."
+msgstr "Внимание: Это действие нельзя отменить. Все ваши бронирования будут безвозвратно удалены."
+
+msgid "Delete Account"
+msgstr "Удалить аккаунт"
+
+# Admin
+msgid "Active Reservations"
+msgstr "Активные бронирования"
+
+msgid "Table"
+msgstr "Столик"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Room"
+msgstr "Зал"
+
+msgid "Time Slot"
+msgstr "Временной слот"
+
+msgid "Action"
+msgstr "Действие"
+
+msgid "Force Free"
+msgstr "Освободить принудительно"
+
+msgid "Rooms"
+msgstr "Залы"
+
+msgid "No active reservations."
+msgstr "Нет активных бронирований."
+
+# Additional translations
+msgid "Registration"
+msgstr "Регистрация"
+
+msgid "Admin Panel"
+msgstr "Панель администратора"
+
+msgid "Username:"
+msgstr "Имя пользователя:"
+
+msgid "Are you sure? This action cannot be undone."
+msgstr "Вы уверены? Это действие нельзя отменить."
+
+msgid "in"
+msgstr "в"
+
+# Footer
+msgid "Book your table online - no quacking lines!"
+msgstr "Забронируйте столик онлайн - без очередей!"
+
